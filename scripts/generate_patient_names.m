@@ -29,5 +29,20 @@ elseif flag == 2 %to save results to tables
         end
 
     end
+elseif flag == 3 %to make a list of patient groups without numbers 
+    patnamelist = strings(sum([length(TOFgroup) length(CTEPHgroup) length(HFgroup)]),1);
+    for j = 1:length(patnamelist)
 
+        if j <= length(TOFgroup)
+            patnamelist(j) = 'rTOF';
+        elseif j > length(TOFgroup) && j <= sum([length(TOFgroup) length(CTEPHgroup)])
+            patnamelist(j) = 'CTEPH';
+        else
+            patnamelist(j) = 'HF';
+            
+        end
+
+    end
+
+end
 end

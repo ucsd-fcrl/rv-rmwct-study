@@ -4,16 +4,16 @@
 clear all
 clc
 
-home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper';
+home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
 cd(home)
 savepath = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
 
 %% Demographic stats
 %load patient history table
-hx = readmatrix([home,'/Table1_results/patient_history.csv']);
+hx = readtable([home,'results/Table1_results/patient_history.csv']);
 
 %sex
-sex = hx(:,2);
+sex = table2array(hx(:,2));
 sex = string(sex);
 sexnum = zeros(length(sex),1);
 for i = 1:length(sex)
@@ -26,19 +26,19 @@ end
 results_sex = data_analysis(sexnum(1:8),sexnum(9:16),sexnum(17:end));
 
 %age
-age = hx(:,3);
+age = table2array(hx(:,3));
 results_age = data_analysis(age(1:8),age(9:16),age(17:end));
 
 %BMI
-bmi = hx(:,4);
+bmi = table2array(hx(:,4));
 results_bmi = data_analysis(bmi(1:8),bmi(9:16),bmi(17:end));
 
 %time
-time = hx(:,10);
+time = table2array(hx(:,10));
 results_time = data_analysis(time(1:8),time(9:16),time(17:end));
 
 %presence of conductance disorders
-arrhy = hx(:,11);
+arrhy = table2array(hx(:,11));
 arrhy = string(arrhy);
 arr = zeros(length(arrhy),1);
 for i = 1:length(arrhy)
@@ -51,7 +51,7 @@ end
 results_arrhy = data_analysis(arr(1:8),arr(9:16),arr(17:end));
 
 %pacemaker status
-pm = hx(:,12);
+pm = table2array(hx(:,12));
 pm = string(pm);
 pace = zeros(length(pm),1);
 for i = 1:length(pm)
@@ -64,11 +64,11 @@ end
 results_pm = data_analysis(pace(1:8),pace(9:16),pace(17:end));
 
 %nyha fc
-fc = hx(:,13); 
+fc = table2array(hx(:,13)); 
 results_fc = data_analysis(fc(1:8),fc(9:16),fc(17:end));
 
 %% CT measurements
-ct_data = readmatrix([home,'/Table1_results/ct_measurements.csv']);
+ct_data = readmatrix([home,'results/Table1_results/ct_measurements.csv']);
 %RV end-diastolic volume index
 edvi = ct_data(:,2); 
 results_edvi = data_analysis(edvi(1:8),edvi(9:16),edvi(17:end));
@@ -82,7 +82,7 @@ ef = ct_data(:,4);
 results_ef = data_analysis(ef(1:8),ef(9:16),ef(17:end));
 
 %% RHC measurements
-rhc = readmatrix([home,'/Table1_results/rhc_measurements.csv']);
+rhc = readmatrix([home,'results/Table1_results/rhc_measurements.csv']);
 %heart rate
 hr = rhc(:,2);
 results_hr = data_analysis(hr(1:8),hr(9:16),hr(17:end));
@@ -194,7 +194,7 @@ unprod_FW = unprod_work(:,3);
 results_unprod_FW = data_analysis(unprod_FW(1:8),unprod_FW(9:16),unprod_FW(17:end));
 
 %unproductive work analysis of the septal wall
-unprod_SW = table2array(unprod_work(:,4));
+unprod_SW = unprod_work(:,4);
 results_unprod_SW = data_analysis(unprod_SW(1:8),unprod_SW(9:16),unprod_SW(17:end));
 
 %unproductive work analysis of the RVOT
@@ -202,7 +202,7 @@ unprod_RVOT = unprod_work(:,5);
 results_unprod_RVOT = data_analysis(unprod_RVOT(1:8),unprod_RVOT(9:16),unprod_RVOT(17:end));
 
 %%%Dyskinesia%%%
-dyskin = readtable([home,'results/Figure3_results/dyskinesia_results.csv']);
+dyskin = readmatrix([home,'results/Figure3_results/dyskinesia_results.csv']);
 
 %dyskinesia analysis in rTOF cohort
 dyskin_tof = dyskin(1:8,2:end);
