@@ -1,0 +1,36 @@
+Patients,RVEDVI (mL/m^2),RVSVI (mL/m^2),RVEF (%)
+rTOF patient 1,159.30,79.49,49.90
+rTOF patient 2,130.60,76.01,58.20
+rTOF patient 3,110.10,64.30,58.40
+rTOF patient 4, 89.80,47.77,53.20
+rTOF patient 5, 95.90,43.83,45.70
+rTOF patient 6,135.00,70.20,52.00
+rTOF patient 7,117.40,63.98,54.50
+rTOF patient 8,147.40,44.66,30.30
+CTEPH patient 1,122.90,63.42,51.60
+CTEPH patient 2,181.30,43.51,24.00
+CTEPH patient 3,182.40,63.84,35.00
+CTEPH patient 4,112.10,45.51,40.60
+CTEPH patient 5,139.00,39.48,28.40
+CTEPH patient 6, 96.00,48.19,50.20
+CTEPH patient 7,104.40,53.45,51.20
+CTEPH patient 8,130.60,31.21,23.90
+HF patient 1, 70.90,30.13,42.50
+HF patient 2, 80.90,22.25,27.50
+HF patient 3,104.50,33.96,32.50
+HF patient 4, 75.00,45.08,60.10
+HF patient 5,100.70,31.12,30.90
+HF patient 6,139.30,45.41,32.60
+HF patient 7,154.90,49.10,31.70
+HF patient 8,156.70,18.49,11.80
+HF patient 9, 67.00,29.01,43.30
+HF patient 10,107.60,34.00,31.60
+HF patient 11,187.50,62.81,33.50
+HF patient 12, 94.60,45.22,47.80
+HF patient 13,102.50,31.57,30.80
+HF patient 14,102.80,52.53,51.10
+HF patient 15, 71.30,29.23,41.00
+HF patient 16,104.40,45.73,43.80
+HF patient 17,163.30,44.58,27.30
+HF patient 18,103.60,33.07,31.92
+HF patient 19, 86.20,33.62,39.00
