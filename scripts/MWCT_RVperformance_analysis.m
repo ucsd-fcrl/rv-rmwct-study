@@ -3,6 +3,7 @@ clc
 
 home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper';
 cd(home)
+addpath(genpath(home))
 datapath = [home,'/data/'];
 savepath = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
 
@@ -52,7 +53,7 @@ per_kin_nw = zeros(length(seg_patsIndx),1);
 per_dyskin_pw = zeros(length(seg_patsIndx),1);
 per_dyskin_nw = zeros(length(seg_patsIndx),1);
 dice = zeros(length(seg_patsIndx),1);
-
+disp('Starting whole RV analysis')
 for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
     patient = seg_patsIndx(q);
      disp(['analyzing patient ',patnames{patient},'...'])
@@ -90,12 +91,13 @@ for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
      per_dyskin_nw(q) = dyskinetic_nw;
      dice(q) = (2*numel(dyskineticNW_ind))./(numel(dyskineticPW_ind)+numel(dyskineticNW_ind)+numel(kineticNW_ind));
 end
+disp('Whole RV analysis completed')
 %% Save whole RV performance analysis
 patnamelist = generate_patient_names(TOFpats,CTEPHpats,HFpats,2);
 
    RVperformance = table(patnamelist, per_kin_pw, per_dyskin_pw,per_kin_nw, per_dyskin_nw,dice,'VariableNames',...
        {'Patients','Kinetic-Productive (%)', 'Dyskinetic-Productive (%)','Kinetic-Unproductive (%)', 'Dyskinetic-Unproductive (%)','Dyskinesia-Unproductive Overlap'});
-   writetable(RVperformance,[savepath,'Table2_Figure2_data/','Table2_Figure2_data.csv'])
+   writetable(RVperformance,[savepath,'results/Table2_Figure2_results/','RVfunctional_categories_results.csv'])
 
 %% Segmental RV analysis (free wall, septal wall, RVOT)
 
@@ -114,6 +116,7 @@ RVOT_kinetic = zeros(length(seg_patsIndx),1);
 RVOT_dyskinetic = zeros(length(seg_patsIndx),1);
 RVOT_negWork = zeros(length(seg_patsIndx),1);
 
+disp('Starting segmental RV analysis')
 for q = 1:length(seg_patsIndx)
     patient = seg_patsIndx(q);
      disp(['analyzing patient ',patnames{patient},'...'])
@@ -165,21 +168,21 @@ for q = 1:length(seg_patsIndx)
      RVOT_dyskinetic(q) = RVOT_dyskinetic_pw+ RVOT_dyskinetic_nw;
      RVOT_negWork(q) = RVOT_kinetic_nw+RVOT_dyskinetic_nw;
 end
-
+disp('Segmental RV analysis completed')
 
 %% Save segmental RV performance analysis 
 patnamelist = generate_patient_names(TOFpats,CTEPHpats,HFpats,2);
   meanMWresults = table(patnamelist,VentricleMeanMW,FWMeanMW,...
         SWMeanMW,RVOTMeanMW,'VariableNames',...
         {'Patients','RV mean MW','FW mean MW','SW mean MW','RVOT mean MW'});
-   writetable(meanMWresults,[savepath,'Figure3_data/','mean_MW_results.csv'])
+   writetable(meanMWresults,[savepath,'results/Figure3_data/','mean_MW_results.csv'])
 
     negworkresults = table(patnamelist,Ventricle_negWork, FW_negWork,...
        SW_negWork, RVOT_negWork,'VariableNames',...
        {'Patients','RV unproductive work (%)','FW unproductive work (%)','SW unproductive work (%)','RVOT unproductive work (%)'});
-   writetable(negworkresults,[savepath,'Figure3_data/','unproductive_work_results.csv'])
+   writetable(negworkresults,[savepath,'results/Figure3_data/','unproductive_work_results.csv'])
 
     dyskinesiaresults = table(patnamelist,Ventricle_dyskinetic,FW_dyskinetic,...
         SW_dyskinetic,RVOT_dyskinetic,'VariableNames',...
        {'Patients','RV dyskinesia (%)','FW dyskinesia (%)','SW dyskinesia (%)','RVOT dyskinesia (%)'});
-    writetable(dyskinesiaresults,[savepath,'Figure3_data/','dyskinesia_results.csv'])
+    writetable(dyskinesiaresults,[savepath,'results/Figure3_data/','dyskinesia_results.csv'])

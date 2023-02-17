@@ -3,6 +3,7 @@ clc
 
 home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper';
 cd(home)
+addpath(genpath(home))
 datapath = [home,'/data/'];
 
 % % Make a list of patient names for each cohort
@@ -33,7 +34,7 @@ datapath = [home,'/data/'];
 TOFpats = dir([datapath,'RSCT_data/rTOF*']);
 CTEPHpats = dir([datapath,'RSCT_data/CTEPH*']);
 HFpats = dir([datapath,'RSCT_data/HF*']);
-patnames = generate_patient_names(TOFpats,CTEPHpats,HFpats);
+patnames = generate_patient_names(TOFpats,CTEPHpats,HFpats,1);
 seg_patsIndx = 1:length(patnames);
 
 %%%Load in CT acquisition across the RR interval%%%
@@ -45,7 +46,7 @@ for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
      disp(['analyzing patient ',patnames{patient},'...'])
 
     %%%Load in RV data points%%%
-    framepts = readmatrix([datapath,'RV_framepts/',patnames{patient},'_framepts.csv']);
+    framepts = readmatrix([datapath,'RV_framepts/',patnames{patient},'_RV_framepts.csv']);
 
     %%%Load in volume data%%%
     vol = readmatrix([datapath,'RV_volumes/',patnames{patient},'_volumes.csv']);
