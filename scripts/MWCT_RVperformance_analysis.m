@@ -1,3 +1,6 @@
+%Performs RV functional categorization across the whole RV and for RV
+%segments
+
 clear all
 clc
 
@@ -6,35 +9,6 @@ cd(home)
 addpath(genpath(home))
 datapath = [home,'/data/'];
 savepath = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
-
-% %foldpath = '/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/';
-% 
-% % Make a list of patient names for each cohort
-% TOFpats = dir([home,'/MWCT_data/rTOF/CVC*']); %/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/TOF/RV/with_RHC/CVC*');
-% TOFpatnames = cell(length(TOFpats),1);
-% for i = 1:length(TOFpats)
-%     TOFpatnames{i} = TOFpats(i).name(1:13);
-% end
-% 
-% CTEPHpats = dir([home,'/MWCT_data/CTEPH/CVC*']); %dir('/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/CTEPH/RV/CVC*');
-% CTEPHpatnames = cell(length(CTEPHpats),1);
-% for i = 1:length(CTEPHpats)
-%     CTEPHpatnames{i} = CTEPHpats(i).name(1:13);
-% end
-% 
-% ICMpats = dir([home,'/MWCT_data/HF/ischemicCM/CVC*']);
-% nonICMpats = dir([home,'/MWCT_data/HF/nonischemicCM/CVC*']); %dir('/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/CTEPH/RV/CVC*');
-% HFpats = [ICMpats;nonICMpats];
-% HFpatnames = cell(length(HFpats),1);
-% for i = 1:length(HFpats)
-%     HFpatnames{i} = HFpats(i).name(1:13);
-% end
-% 
-% patnames = [TOFpatnames; CTEPHpatnames; HFpatnames]; 
-% seg_patsIndx = 1:length(patnames);
-% 
-% % Set up patient name column for saved data table
-% [patnamelist] = generate_patient_names(TOFpats,CTEPHpats,HFpats);
 
 TOFpats = dir([datapath,'RSCT_data/rTOF*']);
 CTEPHpats = dir([datapath,'RSCT_data/CTEPH*']);
@@ -131,15 +105,6 @@ for q = 1:length(seg_patsIndx)
     %%Load in MWCT data%%%
     MW_CT = readmatrix([datapath,'MWCT_data/',patnames{patient},'_MWCT.csv']);
 
-
-    %%%Load in framepts for the whole RV and its segments to determine which points belong to each
-    %%%segment
-%     RVframepts = readmatrix([datapath,'RV_framepts/',patnames{patient},'_framepts.csv']);
-%     FWframepts = readmatrix([datapath,'FW_framepts/',patnames{patient},'_FW_framepts.csv']); 
-%     SWframepts = readmatrix([datapath,'SW_framepts/',patnames{patient},'_SW_framepts.csv']); 
-%     RVOTframepts = readmatrix([datapath,'RVOT_framepts/',patnames{patient},'_RVOT_framepts.csv'])); 
-%     includedpts_lid = readmatrix([datapath,'lid_framepts/',patnames{patient},'_lid_framepts.csv']);
-
     %%%Isolate free wall function and categorize%%%
 %    [FW_MW_CT,FW_RS_CT,FWframepts] = isolate_poi(datapath,'FW_framepts/',flag1,'FW',patnames{patient},RVframepts, MW_CT, RS_CT_array);
     [FW_kinetic_pw,FW_kinetic_nw,FW_dyskinetic_pw, FW_dyskinetic_nw,FW_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'FW');
@@ -175,14 +140,14 @@ patnamelist = generate_patient_names(TOFpats,CTEPHpats,HFpats,2);
   meanMWresults = table(patnamelist,VentricleMeanMW,FWMeanMW,...
         SWMeanMW,RVOTMeanMW,'VariableNames',...
         {'Patients','RV mean MW','FW mean MW','SW mean MW','RVOT mean MW'});
-   writetable(meanMWresults,[savepath,'results/Figure3_data/','mean_MW_results.csv'])
+   writetable(meanMWresults,[savepath,'results/Figure3_results/','mean_MW_results.csv'])
 
     negworkresults = table(patnamelist,Ventricle_negWork, FW_negWork,...
        SW_negWork, RVOT_negWork,'VariableNames',...
        {'Patients','RV unproductive work (%)','FW unproductive work (%)','SW unproductive work (%)','RVOT unproductive work (%)'});
-   writetable(negworkresults,[savepath,'results/Figure3_data/','unproductive_work_results.csv'])
+   writetable(negworkresults,[savepath,'results/Figure3_results/','unproductive_work_results.csv'])
 
     dyskinesiaresults = table(patnamelist,Ventricle_dyskinetic,FW_dyskinetic,...
         SW_dyskinetic,RVOT_dyskinetic,'VariableNames',...
        {'Patients','RV dyskinesia (%)','FW dyskinesia (%)','SW dyskinesia (%)','RVOT dyskinesia (%)'});
-    writetable(dyskinesiaresults,[savepath,'results/Figure3_data/','dyskinesia_results.csv'])
+    writetable(dyskinesiaresults,[savepath,'results/Figure3_results/','dyskinesia_results.csv'])

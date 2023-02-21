@@ -1,3 +1,5 @@
+%Generates Figure 3 subplots
+
 clear all
 clc
 

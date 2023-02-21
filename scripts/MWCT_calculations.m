@@ -1,3 +1,7 @@
+%Calculates regional myocardial work given the patient-specific regional strain
+%measurments, RV pressure waveforms, and timing of the CTs across the
+%cardiac cycle
+
 clear all
 clc
 
@@ -5,30 +9,6 @@ home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper';
 cd(home)
 addpath(genpath(home))
 datapath = [home,'/data/'];
-
-% % Make a list of patient names for each cohort
-% TOFpats = dir([home,'/MWCT_data/rTOF/CVC*']); %/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/TOF/RV/with_RHC/CVC*');
-% TOFpatnames = cell(length(TOFpats),1);
-% for i = 1:length(TOFpats)
-%     TOFpatnames{i} = TOFpats(i).name(1:13);
-% end
-% 
-% CTEPHpats = dir([home,'/MWCT_data/CTEPH/CVC*']); %dir('/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/CTEPH/RV/CVC*');
-% CTEPHpatnames = cell(length(CTEPHpats),1);
-% for i = 1:length(CTEPHpats)
-%     CTEPHpatnames{i} = CTEPHpats(i).name(1:13);
-% end
-% 
-% ICMpats = dir([home,'/MWCT_data/HF/ischemicCM/CVC*']);
-% nonICMpats = dir([home,'/MWCT_data/HF/nonischemicCM/CVC*']); %dir('/Users/amandacraine/Documents/ContijochLab/SQUEEZ_Analysis/CTEPH/RV/CVC*');
-% HFpats = [ICMpats;nonICMpats];
-% HFpatnames = cell(length(HFpats),1);
-% for i = 1:length(HFpats)
-%     HFpatnames{i} = HFpats(i).name(1:13);
-% end
-% 
-% patnames = [TOFpatnames; CTEPHpatnames; HFpatnames]; 
-% seg_patsIndx = 1:length(patnames);
 
 % Make a list of patient names for each cohort
 TOFpats = dir([datapath,'RSCT_data/rTOF*']);
@@ -44,12 +24,6 @@ CT_timing_array(:,1) = []; %remove patient indexing
 for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
     patient = seg_patsIndx(q);
      disp(['analyzing patient ',patnames{patient},'...'])
-
-    %%%Load in RV data points%%%
-    framepts = readmatrix([datapath,'RV_framepts/',patnames{patient},'_RV_framepts.csv']);
-
-    %%%Load in volume data%%%
-    vol = readmatrix([datapath,'RV_volumes/',patnames{patient},'_volumes.csv']);
 
     %%%Load in RSCT data%%%
     RS_CT_array = readmatrix([datapath,'/RSCT_data/',patnames{patient},'_RSCT.csv']);
