@@ -3,6 +3,7 @@ clc
 
 home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
 cd(home)
+addpath(genpath(home))
 
 %%% Figure 3A: Segmental mean MWCT across populations
 meanMW = readmatrix([home,'/results/Figure3_results/mean_MW_results.csv']);
@@ -21,7 +22,7 @@ subplot_tight(2,3,1,[0.08 0.08]);
 boxplot([TOF_meanMW],'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
 ylim([-5 19]); ylabel('Mean Pressure-Strain Area');axis('square');
 title('rTOF')
-text(2.5,17.8,'p < 0.01')
+text(2.5,17.8,'p = 0.01')
 line([2 4],[16.5 16.5],'Color','black'); line([2 2],[16.6 16.1],'Color','black'); line([4 4],[16.6 16.1],'Color','black')
 
 subplot_tight(2,3,2,[0.08 0.08]);
@@ -33,8 +34,10 @@ line([2 3],[16.5 16.5],'Color','black'); line([2 2],[16.6 16.1],'Color','black')
 
 subplot_tight(2,3,3,[0.08 0.08]);
 boxplot([HF_meanMW],'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
+ylim([-5 19]); ylabel('Mean Pressure-Strain Area');
 title('HF')
-ylim([-5 19]); ylabel('Mean Pressure-Strain Area'); axis('square');
+text(2.95,17.8,'p = 0.03')
+line([3 4],[16.5 16.5],'Color','black'); line([3 3],[16.6 16.1],'Color','black'); line([4 4],[16.6 16.1],'Color','black')
 
 %%% Figure 3B: Extent of RV unproductive work across populations
 %%% Boxplot displaying the ranges of the extent of unproductive work across
@@ -119,3 +122,24 @@ legend('rTOF','CTEPH','HF','location','northwest');
 set(findall(gcf,'-property','FontSize'),'FontSize',40)
 set(findall(gcf,'-property','LineWidth'),'LineWidth',4)
 set(findall(gcf,'-property','MarkerSize'),'MarkerSize',35)
+%%
+%%% Fisher r to z transformation %%%
+% 2 = unproductive work vs RVEF
+% 1 = dyskinesia vs RVEF 
+z2 = atanh(rtot2(1,2));
+z1 = atanh(rtot1(1,2));
+n = numel(x1);
+z = (z2 - z1)./sqrt((1./(n-3))+(1./(n-3)));
+%p-value
+p = (1-normcdf(abs(z),0,1))*2;
+
+error2 = 1/(sqrt(numel(x1))-3);
+error1 = 1/(sqrt(numel(x1))-3);
+
+%%% confidence interval test %%%
+alpha = 0.05;
+ci_l = z - 1.96*error1;
+ci_u = z + 1.96*error1;
+
+r_l = tanh(ci_l);
+r_u = tanh(ci_u);
