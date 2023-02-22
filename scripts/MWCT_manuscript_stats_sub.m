@@ -4,13 +4,14 @@
 clear all
 clc
 
-home = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
-cd(home)
-savepath = '/Users/amandacraine/Documents/ContijochLab/repos/ac-MWCT-paper/';
+addpath(genpath('../results'))
+cd('../results/');
+resultspath = cd('../results/');
+
 
 %% Demographic stats
 %load patient history table
-hx = readtable([home,'results/Table1_results/patient_history.csv']);
+hx = readtable([resultspath,'/Table1_results/patient_history.csv']);
 
 %sex
 sex = table2array(hx(:,2));
@@ -68,7 +69,7 @@ fc = table2array(hx(:,13));
 results_fc = data_analysis(fc(1:8),fc(9:16),fc(17:end));
 
 %% CT measurements
-ct_data = readmatrix([home,'results/Table1_results/ct_measurements.csv']);
+ct_data = readmatrix([resultspath,'/Table1_results/ct_measurements.csv']);
 %RV end-diastolic volume index
 edvi = ct_data(:,2); 
 results_edvi = data_analysis(edvi(1:8),edvi(9:16),edvi(17:end));
@@ -82,7 +83,7 @@ ef = ct_data(:,4);
 results_ef = data_analysis(ef(1:8),ef(9:16),ef(17:end));
 
 %% RHC measurements
-rhc = readmatrix([home,'results/Table1_results/rhc_measurements.csv']);
+rhc = readmatrix([resultspath,'/Table1_results/rhc_measurements.csv']);
 %heart rate
 hr = rhc(:,2);
 results_hr = data_analysis(hr(1:8),hr(9:16),hr(17:end));
@@ -106,7 +107,7 @@ pvr = rhc(:,8);
 results_pvr = data_analysis(pvr(1:8),pvr(9:16),pvr(17:end));
 
 %% Whole RV stats
-RVperformance = readmatrix([home,'/results/Table2_figure2_results/RVfunctional_categories_results.csv']);
+RVperformance = readmatrix([resultspath,'/Table2_figure2_results/RVfunctional_categories_results.csv']);
 
 %Kinetic-productive RV
 kin_pw = RVperformance(:,2);
@@ -140,7 +141,7 @@ results_discord = data_analysis(discord(1:8),discord(9:16),discord(17:end));
 % The median and IQR results for the whole RV data are calcuated, but are not included in the Kruskal-Wallis test.  
 
 %%%Mean MW%%%
-meanMW = readmatrix([home,'/results/Figure3_results/mean_MW_results.csv']);
+meanMW = readmatrix([resultspath,'/Figure3_results/mean_MW_results.csv']);
 
 %mean MW analysis in rTOF cohort
 meanMW_tof = meanMW(1:8,2:end);
@@ -171,7 +172,7 @@ meanMW_RVOT = meanMW(:,5);
 results_meanMW_RVOT = data_analysis(meanMW_RVOT(1:8),meanMW_RVOT(9:16),meanMW_RVOT(17:end));
 
 %%%Unproudctive work%%%
-unprod_work = readmatrix([home,'results/Figure3_results/unproductive_work_results.csv']);
+unprod_work = readmatrix([resultspath,'/Figure3_results/unproductive_work_results.csv']);
 
 %unproductive work analysis in rTOF cohort
 unrprod_tof = unprod_work(1:8,2:end);
@@ -202,7 +203,7 @@ unprod_RVOT = unprod_work(:,5);
 results_unprod_RVOT = data_analysis(unprod_RVOT(1:8),unprod_RVOT(9:16),unprod_RVOT(17:end));
 
 %%%Dyskinesia%%%
-dyskin = readmatrix([home,'results/Figure3_results/dyskinesia_results.csv']);
+dyskin = readmatrix([resultspath,'/Figure3_results/dyskinesia_results.csv']);
 
 %dyskinesia analysis in rTOF cohort
 dyskin_tof = dyskin(1:8,2:end);

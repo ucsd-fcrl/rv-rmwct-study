@@ -17,11 +17,11 @@ function [kinetic_pw,kinetic_nw,dyskinetic_pw,dyskinetic_nw,meanMW, kineticPW_in
 % 8. dyskineticNW_ind = index of points labeled dyskinetic-unproductive
 
 %load in the framepts for the whole RV surface
-RVframepts = readmatrix([datapath,'RV_framepts/',patient,'_RV_framepts.csv']);
+RVframepts = readmatrix([datapath,'/RV_framepts/',patient,'_RV_framepts.csv']);
 %load in points that make up the RV lids
-includedpts_lid = readmatrix([datapath,'lid_framepts/',patient,'_lid_framepts.csv']);
+includedpts_lid = readmatrix([datapath,'/lid_framepts/',patient,'_lid_framepts.csv']);
 %load in the points labeled at the region of interest
-poi_framepts = readmatrix([datapath,poi,'_framepts/',patient,'_',poi,'_framepts.csv']);
+poi_framepts = readmatrix([datapath,'/',poi,'_framepts/',patient,'_',poi,'_framepts.csv']);
 
 
 %find volumetric end-systole
