@@ -1,10 +1,10 @@
-# Evaluation of right ventricular regional myocardial work with cardiac CT
+# Evaluation of regional right ventricular performance with myocardial work
 ### **Author: Amanda Craine**
 
 Will fill in paper details associated with this repo after submission/publication.
 
 ## Description
-We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. This myocardial work measurement is combined with a previously validated measurement of regional strain (cite?) to develop patient-specific profiles of regional RV function. This repo demonstrates 1) the calculation of myocardial work, 2) the process of categorizing RV function, and 3) the analysis of RV function across the whole RV and RV segments, such as the free wall, the septal wall, and RV outflow tract.
+We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. This myocardial work measurement is combined with a previously validated measurement of regional strain (cite?) to develop patient-specific profiles of regional RV function. This repo demonstrates 1) the calculation of myocardial work, 2) the process of categorizing RV performance, and 3) the analysis of RV performance across the whole RV and specific RV segments, such as the free wall, the septal wall, and RV outflow tract.
 
 ## User Guideline
 ### Data provided
