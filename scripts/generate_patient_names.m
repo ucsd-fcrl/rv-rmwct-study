@@ -1,5 +1,20 @@
 function [patnamelist] = generate_patient_names(TOFgroup,CTEPHgroup,HFgroup,flag)
+%%%Goal%%%
+% Writes a list of the patient names to load in patient data files. There
+% are three options of patient lists based on what the list is needed for. 
 
+%%%Inputs%%%
+% TOFgroup = list of rTOF patients
+% CTEPHgroup = list of CTEPH patients
+% HFgroup = list of HF patients
+% Flag 1 = to mimic the patient names in the data files in order to load
+% data (ex. rTOF1)
+% Flag 2 = a more formal patient list to save as a column in results tables
+% (ex. rTOF patient 1)
+% Flag 3 = a list without numbers, just identifies the disease type (ex. rTOF)
+
+%%%Outputs%%%
+% patnamelist = list of patients
 
 if flag == 1 %to read in data files 
 patnamelist = cell(sum([length(TOFgroup) length(CTEPHgroup) length(HFgroup)]),1);

@@ -37,11 +37,11 @@ val4c=prctile(group4,75);
 if numel(find(~isnan(group2)))*numel(find(~isnan(group3)))*numel(find(~isnan(group4))) > 0
     for i = 1:sum([length(group2),length(group3),length(group4)])
         if i <= length(find(~isnan(group2)))
-            grp_vec{i} = 'TOF';
+            grp_vec{i} = 'FW';
         elseif i > length(group2) && i <= sum([length(group2),length(group3)])
-            grp_vec{i} = 'CTEPH';
+            grp_vec{i} = 'SW';
         else
-            grp_vec{i} = 'LVAD';
+            grp_vec{i} = 'RVOT';
         end
     end
 

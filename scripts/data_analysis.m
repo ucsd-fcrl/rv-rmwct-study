@@ -27,20 +27,12 @@ val3b=prctile(group3,25);
 val3c=prctile(group3,75);
 
 % Do a non-parametric comparison
-if numel(find(~isnan(group1)))*numel(find(~isnan(group2)))*numel(find(~isnan(group3))) > 0
-    for i = 1:sum([length(group1),length(group2),length(group3)])
-        if i <= length(find(~isnan(group1)))
-            grp_vec{i} = 'TOF';
-        elseif i > length(group1) && i <= sum([length(group1),length(group2)])
-            grp_vec{i} = 'CTEPH';
-        else
-            grp_vec{i} = 'HF';
-        end
-    end
+    grp_vec = generate_patient_names(group1,group2,group3,3);
 
     gen_vec=[group1; group2; group3];
     [comp1,~,stats]=kruskalwallis(gen_vec,grp_vec);
 
+    %if non-parametric comparison is significant, do a post-hoc analysis
     if comp1<0.05
         c=multcompare(stats);
         pair_c=c(:,6)<0.05;

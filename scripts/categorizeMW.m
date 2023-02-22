@@ -3,18 +3,21 @@ function [kinetic_pw,kinetic_nw,dyskinetic_pw,dyskinetic_nw,meanMW, kineticPW_in
 %%%Goal%%% 
 % Perform RV functional categorization on selected points for a given RV segment. 
 %%%Inputs%%% 
-% 1. PSAvsRS holds MWCT for each point
+% 1. MW_CT =  regional myocardial work for each point
 % 2. RS_CT_array = regional strain (RS) over time for each point
 % 3. vol = volume over time
+% 4. patient = patient label (e.g. rTOF1)
+% 5. poi = label for region of interest we're working on (RV, FW, SW, or RVOT)
 %%%Outputs%%% 
 % 1. kinetic_pw = extent of the RV segment that's kinetic-productive
 % 2. kinetic_nw = extent of the RV segment that's kinetic-unproductive
 % 3. dyskinetic_pw = extent of the RV segment that's dyskinetic-productive
 % 4. dyskinetic_nw = extent of the RV segment that's dyskinetic-unproductive
-% 5. kineticPW_ind = index of points labeled kinetic-productive
-% 6. kineticNW_ind = index of points labeled kinetic-unproductive
-% 7. dyskineticPW_ind = index of points labeled dyskinetic-productive
-% 8. dyskineticNW_ind = index of points labeled dyskinetic-unproductive
+% 5. meanMW = mean myocardial work calculation
+% 6. kineticPW_ind = index of points labeled kinetic-productive
+% 7. kineticNW_ind = index of points labeled kinetic-unproductive
+% 8. dyskineticPW_ind = index of points labeled dyskinetic-productive
+% 9. dyskineticNW_ind = index of points labeled dyskinetic-unproductive
 
 %load in the framepts for the whole RV surface
 RVframepts = readmatrix([datapath,'/RV_framepts/',patient,'_RV_framepts.csv']);
