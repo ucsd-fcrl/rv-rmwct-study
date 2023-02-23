@@ -36,25 +36,34 @@ Required data:
 2. RV_pressure
 3. RSCT_data
 
-Data is loaded in and MWCT is generated with the function ./scripts/calculateMWCT.m. We compute regional myocardial work as the area of the RV pressure-regional strain loop. 
+We compute regional myocardial work as the area of the RV pressure-regional strain loop with the function ./scripts/calculateMWCT.m.  
 
 First, the RV pressure waveform is simplified to inlcude only the pressure values acquired at times closest to the CT timing data. This simplification allows the pressure and RSCT data to be aligned in time. Then, MWCT is computed as the integral of the RSCT and simplified pressure data. 
 
-Note: A MWCT dataset is provided in this repo. If you calculate MWCT yourself, your MWCT calculation will overwrite the provided MWCT data. 
+Note: A MWCT dataset is provided in this repo. Calculating MWCT yourself will overwrite the provided MWCT data. 
 
 ### Analyzing RV performance based on work and strain
-RV performance is categorized in ./scripts/MWCT_RVperformance_analysis.m. 
+RV performance is categorized in ./scripts/MWCT_RVperformance_analysis.m. Regional RV performance is organzied into 4 different categories with the function ./scripts/categorizeMWCT.m. The categories are based on regional work and strain values. Please see the Methods section of the paper for details on each category.
 Required data:
 1. RV_volumes
 2. RSCT_data
 3. MWCT_data
+4. RV_framepts
+5. lid_framepts
 
-Analysis of the whole RV is separate from analysis of the RV segments.  
+Segmental RV analysis also requires the framepts of the free wall, septal wall, and RVOT.
 
-describe what the RV performance script does. what does the whole RV analysis do and how is it different than the segmental analysis?
-mention that some of the whole rv data is included in the segmental rv results (RV mean MW, % unproductive work, %dyskinesia)
+Whole RV analysis categorizes all RV_framepts. Points labeled as "lid" are removed. Segmental RV analysis categorizes the framepts of each segment of interest. The framepts for each segment are compared to the lid framepts. Any shared points are removed.
+
+Results of whole RV analysis include the percent of the RV that falls into each category as well as the Dyskinesia-Unproductive Overlap (Dice coefficient). Results of segmental RV analysis include the average MWCT in each segment, the percent of unproductive work in each segment, and the percent of dyskinesia in each segment. Note that the segmental RV results also include the whole RV.
+
 
 ### Additional scripts
-The statistics calculated for this paper are provided in script xx.m
-the script where figure 3 was created is also provided. this script also holds the correlation tests between the extent of impairment (%dyskinesia/%unproductive work) and global function
+1. The statistics calculated for this paper are provided in ./scripts/MWCT_manuscript_stats_sub.m
+2. Figure 3 in the paper was generated with ./scripts/MWCT_manuscript_fig3.m 
+      * This script also computes the correlation between the extent of work and strain impairment (% dyskinesia and % unproductive work) and global function
 
+### Additional guidelines
+Please see the comments in the scripts.
+
+Please contact acraine@eng.ucsd.edu or fcontijoch@ucsd.edu for any further questions.
