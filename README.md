@@ -27,7 +27,7 @@ Here is a list of data provided to calculate myocardial work and analyze RV perf
 9. SW_framepts: RV_framepts labeled septal wall, reported as an index of RV_framepts positioned in the septal wall space
 10. lid_framepts: RV_framepts labeled "lids", which includes the tricuspid and pulmonary valve planes. Reported as an index of RV_framepts positioned in the lids space
 
-Patient data is anonymized, data belonging to each patient is labeled by their disease type and a number, ex. rTOF1
+Patient data is anonymized. Data belonging to each patient is labeled by their disease type and a number, ex. rTOF1
 
 ### Calculating myocardial work
 explain all the data needed to do that, mention that MWCT data is already provided but you can calculate it yourself
