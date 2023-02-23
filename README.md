@@ -30,7 +30,7 @@ Here is a list of data provided to calculate myocardial work and analyze RV perf
 Patient data is anonymized. Data belonging to each patient is labeled by their disease type and a number, ex. rTOF1
 
 ### Calculating myocardial work
-Myocardial work is calculated in ../MWCT_calculations.m. Required data:
+Myocardial work is calculated in <MWCT_calculations.m>. Required data:
 1. CT_time_frames
 2. RV_pressure
 3. RSCT_data
