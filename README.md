@@ -11,7 +11,8 @@ We developed a method to estimate regional RV myocardial work as the area of the
 All scripts and data files needed for RV performance analysis are provided. There are three folders in this repo:
 1. "data" holds the data provided, 
 2. "scripts" holds analysis scripts and necessary functions
-3. "results" holds performance categorization results and patient demographic data. Results calculated using this repo are saved to the "results" folder.
+3. "results" holds performance categorization results and patient demographic data
+* results are organized into subfolders based on how they are displayed in the manuscript
 
 ### Data provided
 Here is a list of data provided to calculate myocardial work and analyze RV performance:
