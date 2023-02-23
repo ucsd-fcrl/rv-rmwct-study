@@ -30,16 +30,27 @@ Here is a list of data provided to calculate myocardial work and analyze RV perf
 Patient data is anonymized. Data belonging to each patient is labeled by their disease type and a number, ex. rTOF1
 
 ### Calculating myocardial work
-Myocardial work is calculated in <MWCT_calculations.m>. Required data:
+Myocardial work is calculated in ./scripts/MWCT_calculations.m. 
+Required data:
 1. CT_time_frames
 2. RV_pressure
 3. RSCT_data
 
-Data is loaded in and MWCT is generated with the function calculateMWCT.m. We compute regional myocardial work as the area of the RV pressure-regional strain loop. 
+Data is loaded in and MWCT is generated with the function ./scripts/calculateMWCT.m. We compute regional myocardial work as the area of the RV pressure-regional strain loop. 
 
 First, the RV pressure waveform is simplified to inlcude only the pressure values acquired at times closest to the CT timing data. This simplification allows the pressure and RSCT data to be aligned in time. Then, MWCT is computed as the integral of the RSCT and simplified pressure data. 
 
+Note: A MWCT dataset is provided in this repo. If you calculate MWCT yourself, your MWCT calculation will overwrite the provided MWCT data. 
+
 ### Analyzing RV performance based on work and strain
+RV performance is categorized in ./scripts/MWCT_RVperformance_analysis.m. 
+Required data:
+1. RV_volumes
+2. RSCT_data
+3. MWCT_data
+
+Analysis of the whole RV is separate from analysis of the RV segments.  
+
 describe what the RV performance script does. what does the whole RV analysis do and how is it different than the segmental analysis?
 mention that some of the whole rv data is included in the segmental rv results (RV mean MW, % unproductive work, %dyskinesia)
 
