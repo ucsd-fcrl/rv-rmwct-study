@@ -12,7 +12,7 @@ All scripts and data files needed for RV performance analysis are provided. Ther
 1. "data" holds the data provided, 
 2. "scripts" holds analysis scripts and necessary functions
 3. "results" holds performance categorization results and patient demographic data
-⋅⋅a. results are organized into subfolders based on how they are displayed in the manuscript
+-- results are organized into subfolders based on how they are displayed in the manuscript
 
 ### Data provided
 Here is a list of data provided to calculate myocardial work and analyze RV performance:
