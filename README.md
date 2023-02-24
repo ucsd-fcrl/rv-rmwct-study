@@ -4,7 +4,7 @@
 Will fill in paper details associated with this repo after submission/publication.
 
 ## Description
-We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. In this study, RV pressure was obtained from right heart catheterization reports. Regional strain was estimated by tracking regional deformation of the RV endocardial surface from cardiac cineCT derived volumes (1). This method (RS<sub>CT</sub>) has been previously validated (2), is reproducible (3), and agrees with magnetic resonance-based metrics of myocardial strain (4,5). RSCT has also previously been applied to the RV of adult tetralogy of Fallot patients (6).  
+We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. In this study, RV pressure was obtained from right heart catheterization reports. Regional strain was estimated by tracking regional deformation of the RV endocardial surface from cardiac cineCT derived volumes (1). This method (RS<sub>CT</sub>) has been previously validated (2), is reproducible (3), and agrees with magnetic resonance-based metrics of myocardial strain (4,5). RS<sub>CT</sub> has also previously been applied to the RV of adult tetralogy of Fallot patients (6).  
 
 We combine our regional myocardial work measurement (MW<sub>CT</sub>) with RS<sub>CT</sub> to develop patient-specific profiles of regional RV function in three clinical cohorts: adult repaired tetraolgy of Fallot (rTOF), chronic thromboembolic pulmonary hypertension (CTEPH), and left-sided heart failure (HF). This repo includes 1) the calculation of myocardial work, 2) the categorization of RV performance based on work and strain, and 3) the analysis of RV performance across the whole RV and specific RV segments, such as the free wall, the septal wall, and RV outflow tract.
 
@@ -40,9 +40,9 @@ Required data:
 
 We compute regional myocardial work as the area of the RV pressure-regional strain loop with the function ./scripts/calculateMWCT.m.  
 
-First, the RV pressure waveform is simplified to inlcude only the pressure values acquired at times closest to the CT timing data. This simplification allows the pressure and RSCT data to be aligned in time. Then, MWCT is computed as the integral of the RSCT and simplified pressure data. 
+First, the RV pressure waveform is simplified to inlcude only the pressure values acquired at times closest to the CT timing data. This simplification allows the pressure and RS<sub>CT</sub> data to be aligned in time. Then, MW<sub>CT</sub> is computed as the integral of the RS<sub>CT</sub> and simplified pressure data. 
 
-Note: A MWCT dataset is provided in this repo. Calculating MWCT yourself will overwrite the provided MWCT data. 
+Note: A MW<sub>CT</sub> dataset is provided in this repo. Calculating MW<sub>CT</sub> yourself will overwrite the provided MW<sub>CT</sub> data. 
 
 ### Analyzing RV performance based on work and strain
 RV performance is categorized in ./scripts/MWCT_RVperformance_analysis.m. Regional RV performance is organzied into 4 different categories with the function ./scripts/categorizeMWCT.m. The categories are based on regional work and strain values. Please see the Methods section of the paper for details on each category.
@@ -57,7 +57,7 @@ Segmental RV analysis also requires the framepts of the free wall, septal wall, 
 
 Whole RV analysis categorizes all RV_framepts. Points labeled as "lid" are removed. Segmental RV analysis categorizes the framepts of each segment of interest. The framepts for each segment are compared to the lid framepts. Any shared points are removed.
 
-Results of whole RV analysis include the percent of the RV that falls into each category as well as the Dyskinesia-Unproductive Overlap (Dice coefficient). Results of segmental RV analysis include the average MWCT in each segment, the percent of unproductive work in each segment, and the percent of dyskinesia in each segment. Note that the segmental RV results also include the whole RV.
+Results of whole RV analysis include the percent of the RV that falls into each category as well as the Dyskinesia-Unproductive Overlap (Dice coefficient). Results of segmental RV analysis include the average MW<sub>CT</sub> in each segment, the percent of unproductive work in each segment, and the percent of dyskinesia in each segment. Note that the segmental RV results also include the whole RV.
 
 
 ### Additional scripts
