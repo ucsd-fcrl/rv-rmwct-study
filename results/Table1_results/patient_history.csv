@@ -1,5 +1,5 @@
 Patients,Sex,Age (years),BMI (kg/m^2),TOF repair with transannular patch,Age at TOF repair (months),Prescribed riociguat,Ischemic HF,Received LVAD,Time between CT and RHC (days),Conductance disorders,Pacemaker status,NYHA FC,"CTEPH disease level, right","CTEPH disease level, left"
-rTOF patient 1,F,61,22.27,No,106,,N/A,N/A,86,Yes,Yes,3,N/A,N/A
+rTOF patient 1,F,61,22.27,No,106,,N/A,N/A,77,Yes,Yes,3,N/A,N/A
 rTOF patient 2,M,25,22.5,Yes,2,,N/A,N/A,74,No,No,1,N/A,N/A
 rTOF patient 3,M,27,32.31,No,7,,N/A,N/A,61,Yes,No,2,N/A,N/A
 rTOF patient 4,F,21,19.78,Yes,13,,N/A,N/A,53,Yes,No,2,N/A,N/A
