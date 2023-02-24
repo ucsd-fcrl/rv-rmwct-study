@@ -14,15 +14,15 @@ function [result_vector] = data_analysis(group1,group2,group3)
 %p-vals: p-values between groups from post-hoc analysis
 
 %Find median and interquartile ranges of each group
-val1a=nanmedian(group1);
+val1a=median(group1);
 val1b=prctile(group1,25);
 val1c=prctile(group1,75);
 
-val2a=nanmedian(group2);
+val2a=median(group2);
 val2b=prctile(group2,25);
 val2c=prctile(group2,75);
 
-val3a=nanmedian(group3);
+val3a=median(group3);
 val3b=prctile(group3,25);
 val3c=prctile(group3,75);
 

@@ -17,24 +17,24 @@ function [result_vector] = segmental_data_analysis(group1,group2,group3,group4)
 %p-vals: p-values between groups from post-hoc analysis
 
 %Find median and interquartile ranges of each group
-val1a=nanmedian(group1);
+val1a=median(group1);
 val1b=prctile(group1,25);
 val1c=prctile(group1,75);
 
-val2a=nanmedian(group2);
+val2a=median(group2);
 val2b=prctile(group2,25);
 val2c=prctile(group2,75);
 
-val3a=nanmedian(group3);
+val3a=median(group3);
 val3b=prctile(group3,25);
 val3c=prctile(group3,75);
 
-val4a=nanmedian(group4);
+val4a=median(group4);
 val4b=prctile(group4,25);
 val4c=prctile(group4,75);
 
 % Do a non-parametric comparison
-if numel(find(~isnan(group2)))*numel(find(~isnan(group3)))*numel(find(~isnan(group4))) > 0
+grp_vec = cell(sum([length(group2),length(group3),length(group4)]),1);
     for i = 1:sum([length(group2),length(group3),length(group4)])
         if i <= length(find(~isnan(group2)))
             grp_vec{i} = 'FW';
