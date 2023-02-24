@@ -4,7 +4,9 @@
 Will fill in paper details associated with this repo after submission/publication.
 
 ## Description
-We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. This myocardial work measurement is combined with a previously validated, cardiac CT-based measurement of regional strain (if citing, which paper to cite?) to develop patient-specific profiles of regional RV function. This repo includes 1) the calculation of myocardial work, 2) the categorization of RV performance based on work and strain, and 3) the analysis of RV performance across the whole RV and specific RV segments, such as the free wall, the septal wall, and RV outflow tract.
+We developed a method to estimate regional RV myocardial work as the area of the RV pressure-regional strain loop. In this study, RV pressure was obtained from right heart catheterization reports. Regional strain was estimated by tracking regional deformation of the RV endocardial surface from cardiac cineCT derived volumes (1). This method (RSCT) has been previously validated (2), is reproducible (3), and agrees with magnetic resonance-based metrics of myocardial strain (4,5). RSCT has also previously been applied to the RV of adult tetralogy of Fallot patients (6).  
+
+We combine our regional myocardial work measurement (MWCT) with RSCT to develop patient-specific profiles of regional RV function in three clinical cohorts: adult repaired tetraolgy of Fallot (rTOF), chronic thromboembolic pulmonary hypertension (CTEPH), and left-sided heart failure (HF). This repo includes 1) the calculation of myocardial work, 2) the categorization of RV performance based on work and strain, and 3) the analysis of RV performance across the whole RV and specific RV segments, such as the free wall, the septal wall, and RV outflow tract.
 
 ## User Guideline
 ### Environment Setup
@@ -67,3 +69,11 @@ Results of whole RV analysis include the percent of the RV that falls into each 
 Please see the comments in the scripts.
 
 Please contact acraine@eng.ucsd.edu or fcontijoch@ucsd.edu for any further questions.
+
+### References
+1. PMID: 22342945
+2. PMID: 31824981
+3. PMID: 34541443
+4. PMID: 26706935
+5. PMID: 35751864
+6. PMID: 28970037
