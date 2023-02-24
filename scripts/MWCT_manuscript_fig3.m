@@ -1,8 +1,8 @@
 %Generates Figure 3 plots
 
-clear all
-clc
+clear; clc
 
+%Start in any subfolder of this repo
 addpath(genpath('../results'))
 cd('../results/');
 resultspath = cd('../results/');
@@ -20,7 +20,7 @@ HF_unprod_work = unprod_work(17:end,2:end);
 
 %%%Boxplot displaying the range of Mean MW across the whole RV, free wall, septal wall, and RVOT for each population
 figure; set(gcf,'Position',[500 400 700 700])
-boxplot([TOF_meanMW],'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
+boxplot(TOF_meanMW,'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
 ylim([-5 19]); ylabel('Mean Pressure-Strain Area');axis('square');
 title('rTOF')
 text(2.5,17.8,'p = 0.01')
@@ -30,7 +30,7 @@ set(findall(gcf,'-property','LineWidth'),'LineWidth',4)
 set(findall(gcf,'-property','MarkerSize'),'MarkerSize',35)
 
 figure; set(gcf,'Position',[500 400 700 700])
-boxplot([CTEPH_meanMW],'Labels', {'RV','FW','SW','RVOT'},'whisker',1000); axis('square');
+boxplot(CTEPH_meanMW,'Labels', {'RV','FW','SW','RVOT'},'whisker',1000); axis('square');
 ylim([-5 19]); ylabel('Mean Pressure-Strain Area'); %title('CTEPH');axis('square');
 title('CTEPH')
 text(1.95,17.8,'p = 0.01')
@@ -40,7 +40,7 @@ set(findall(gcf,'-property','LineWidth'),'LineWidth',4)
 set(findall(gcf,'-property','MarkerSize'),'MarkerSize',35)
 
 figure; set(gcf,'Position',[500 400 700 700])
-boxplot([HF_meanMW],'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
+boxplot(HF_meanMW,'Labels', {'RV', 'FW','SW','RVOT'},'whisker',1000); axis('square');
 ylim([-5 19]); ylabel('Mean Pressure-Strain Area');
 title('HF')
 text(2.95,17.8,'p = 0.03')
@@ -89,7 +89,7 @@ ftot1 = polyval(ptot1,linspace(0,100));
 %correlation in the plot
 r1 = ['r^2 = ', num2str(rtot1(1,2)^2,'%.2f')]; %r squared
 if ptot_corr1(1,2) < 0.01
-    p1 = ['p < 0.01'];
+    p1 = 'p < 0.01';
 else
     p1 = ['p = ', num2str(ptot_corr1(1,2),'%.2e')]; %p value
 end
@@ -118,7 +118,7 @@ ptot2 = polyfit(x2,y2,1);
 ftot2 = polyval(ptot2,linspace(0,100));
 r2 = ['r^2 = ', num2str(rtot2(1,2)^2,'%.2f')];
 if ptot_corr2(1,2) < 0.01
-    p2 = ['p < 0.01'];
+    p2 = 'p < 0.01';
 else
     p2 = ['p = ', num2str(ptot_corr2(1,2),'%.2e')];
 end

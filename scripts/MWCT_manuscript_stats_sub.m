@@ -1,13 +1,12 @@
 %Kruskal-Wallis test performed on each parameter. Post-hoc analysis was
 %performed when p<0.05.
 
-clear all
-clc
+clear; clc
 
+%Start in any subfolder of this repo
 addpath(genpath('../results'))
 cd('../results/');
 resultspath = cd('../results/');
-
 
 %% Demographic stats
 %load patient history table
@@ -43,7 +42,7 @@ arrhy = table2array(hx(:,11));
 arrhy = string(arrhy);
 arr = zeros(length(arrhy),1);
 for i = 1:length(arrhy)
-    if arrhy(i) == 'No'
+    if arrhy(i) == "No"
         arr(i) = 1;
     else
         arr(i) = 2;
@@ -56,7 +55,7 @@ pm = table2array(hx(:,12));
 pm = string(pm);
 pace = zeros(length(pm),1);
 for i = 1:length(pm)
-    if pm(i) == 'No'
+    if pm(i) == "No"
         pace(i) = 1;
     else
         pace(i) = 2;

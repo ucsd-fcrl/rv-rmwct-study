@@ -2,10 +2,9 @@
 %measurments, RV pressure waveforms, and timing of the CTs across the
 %cardiac cycle
 
-clear all
-clc
+clear; clc
 
-cd('../scripts');
+%Start in any subfolder of this repo
 addpath(genpath('../data'))
 cd('../data/');
 datapath = cd('../data/');

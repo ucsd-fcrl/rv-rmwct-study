@@ -1,9 +1,9 @@
 %Performs RV functional categorization across the whole RV and for RV
 %segments
 
-clear all
-clc
+clear; clc
 
+%Start in any subfolder of this repo
 addpath(genpath('../data'))
 cd('../data/');
 datapath = cd('../data/');
