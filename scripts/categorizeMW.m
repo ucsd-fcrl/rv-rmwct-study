@@ -1,5 +1,5 @@
 function [kinetic_pw,kinetic_nw,dyskinetic_pw,dyskinetic_nw,meanMW, kineticPW_ind, kineticNW_ind, dyskineticPW_ind, dyskineticNW_ind]...
-    = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patient,poi)
+    = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patient,poi,fig_flag,q)
 %%%Goal%%% 
 % Perform RV functional categorization on selected points for a given RV segment. 
 %%%Inputs%%% 
@@ -19,7 +19,7 @@ function [kinetic_pw,kinetic_nw,dyskinetic_pw,dyskinetic_nw,meanMW, kineticPW_in
 % 8. dyskineticPW_ind = index of points labeled dyskinetic-productive
 % 9. dyskineticNW_ind = index of points labeled dyskinetic-unproductive
 
-%load in the framepts for the whole RV surface
+%load in the framepts for the whole RV surface.
 RVframepts = readmatrix([datapath,'/RV_framepts/',patient,'_RV_framepts.csv']);
 %load in points that make up the RV lids
 includedpts_lid = readmatrix([datapath,'/lid_framepts/',patient,'_lid_framepts.csv']);
@@ -77,4 +77,41 @@ dyskinetic_pw = 100.*(numel(dyskineticPW_ind)./tot); % extent segment that's dys
 dyskinetic_nw = 100.*(numel(dyskineticNW_ind)./tot); % extent segment that's dyskinetic-unproductive
 
 
+if fig_flag == 1
+%%%Generate Figure 2A-C if you want%%%
+    if q == 3 || q == 12 || q == 19
+        figure;
+        set(gcf,'position',[400,200,960,780])
+        plot(min(ESRS(kinetic_ind_es(kineticPW_ind),:),[],2),MW_CT(kinetic_ind_es(kineticPW_ind)),'.','Color',[0.65 0.65 1]); hold on;
+        plot(min(ESRS(kinetic_ind_es(kineticNW_ind),:),[],2),MW_CT(kinetic_ind_es(kineticNW_ind)),'.','Color',[0 0 1]); hold on;
+        plot(min(ESRS(dyskinetic_ind_es(dyskineticPW_ind),:),[],2),MW_CT(dyskinetic_ind_es(dyskineticPW_ind)),'.','Color',[1 0.8118 0.9647]); hold on;
+        plot(min(ESRS(dyskinetic_ind_es(dyskineticNW_ind),:),[],2),MW_CT(dyskinetic_ind_es(dyskineticNW_ind)),'.','Color',[1 0 1]); hold on;
+        xline(-0.1,'Color',[0 0 0]); hold on; yline(0,'Color',[0 0 0]);
+        xlim([-0.62 0.32]); ylim([-17 55]); axis('square');
+        xlabel('End-systolic RS_C_T'); ylabel('Pressure-Strain Area')
+        
+        text(-0.6,3,[num2str(kinetic_pw,'%.0f'),'%']);
+        text(-0.6,-3,[num2str(kinetic_nw,'%.0f'),'%']); 
+        text(0.21,3,[num2str(dyskinetic_pw,'%.0f'),'%']);
+        text(0.18,-3,[num2str(dyskinetic_nw,'%.0f'),'%']);
+        
+        if q == 3
+            title('rTOF')
+            text(-0.6, 51, 'Kinetic'); text(-0.6,46,'Productive');
+            text(-0.6, -8, 'Kinetic'); text(-0.6,-13,'Unproductive');
+            text(-0.09, 51, 'Dyskinetic'); text(-0.09,46,'Productive');
+            text(-0.09, -8, 'Dyskinetic'); text(-0.09,-13,'Unproductive');
+        elseif q == 12
+            title('CTEPH')
+        elseif q == 19
+            title('HF')
+        end
+        set(findall(gcf,'-property','FontSize'),'FontSize',40)
+        set(findall(gcf,'-property','LineWidth'),'LineWidth',4)
+        set(findall(gcf,'-property','MarkerSize'),'MarkerSize',25)
+    end
+
+elseif fig_flag  == 0
+
+end
 end

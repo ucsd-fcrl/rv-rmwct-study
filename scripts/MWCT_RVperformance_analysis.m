@@ -34,12 +34,6 @@ for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
     patient = seg_patsIndx(q);
      disp(['analyzing patient ',patnames{patient},'...'])
 
-%     %%%Load in RV data points%%%
-    framepts = readmatrix([datapath,'/RV_framepts/',patnames{patient},'_RV_framepts.csv']);
-    %identify points labeled right atrium or pulmonary artery and their
-    %adjacent points (removing lids)
-    includedpts_lid = readmatrix([datapath,'/lid_framepts/',patnames{patient},'_lid_framepts.csv']);
-
     %%%Load in volume data%%%
     vol = readmatrix([datapath,'/RV_volumes/',patnames{patient},'_volumes.csv']);
 
@@ -51,8 +45,9 @@ for q = 1:length(patnames) %analyzing patients who fit study inclusion criteria
     MW_CT = readmatrix([datapath,'/MWCT_data/',patnames{patient},'_MWCT.csv']);
 
     %%%Whole RV analysis%%%
+    fig_flag = 1; %this flag generates Figure 2A-C. Set this equal to 0 if you don't want to make them.
     [kinetic_pw,kinetic_nw,dyskinetic_pw,dyskinetic_nw,meanMW,...
-        kineticPW_ind, kineticNW_ind,dyskineticPW_ind, dyskineticNW_ind] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'RV'); 
+        kineticPW_ind, kineticNW_ind,dyskineticPW_ind, dyskineticNW_ind] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'RV',fig_flag,q); 
    
      %%%Collect data%%%
      VentricleMeanMW(q) = meanMW;
@@ -107,13 +102,15 @@ for q = 1:length(seg_patsIndx)
     MW_CT = readmatrix([datapath,'/MWCT_data/',patnames{patient},'_MWCT.csv']);
 
     %%%Isolate free wall function and categorize%%%
-    [FW_kinetic_pw,FW_kinetic_nw,FW_dyskinetic_pw, FW_dyskinetic_nw,FW_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'FW');
+    % Note that the figure flag is set to zero. Figure 2A-C in the paper
+    % is mapping the whole RV.
+    [FW_kinetic_pw,FW_kinetic_nw,FW_dyskinetic_pw, FW_dyskinetic_nw,FW_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'FW',0,q);
 
      %%%Isolate the septal wall%%%
-    [SW_kinetic_pw,SW_kinetic_nw,SW_dyskinetic_pw, SW_dyskinetic_nw,SW_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'SW');
+    [SW_kinetic_pw,SW_kinetic_nw,SW_dyskinetic_pw, SW_dyskinetic_nw,SW_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'SW',0,q);
 
      %%%Isolate the RVOT%%%  
-    [RVOT_kinetic_pw,RVOT_kinetic_nw,RVOT_dyskinetic_pw, RVOT_dyskinetic_nw,RVOT_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'RVOT');
+    [RVOT_kinetic_pw,RVOT_kinetic_nw,RVOT_dyskinetic_pw, RVOT_dyskinetic_nw,RVOT_meanMW] = categorizeMW(MW_CT,RS_CT_array,vol,datapath,patnames{patient},'RVOT',0,q);
 
      %%%Collect data%%%
      FWMeanMW(q) = FW_meanMW;
