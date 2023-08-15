@@ -59,5 +59,26 @@ elseif flag == 3 %to make a list of patient groups without numbers
 
     end
 
+elseif flag == 4 %to make a list of patient groups without numbers
+    patnamelist = strings(sum([length(TOFgroup) length(CTEPHgroup) length(HFgroup)]),1);
+    for j = 1:length(patnamelist)
+
+        if j <= length(TOFgroup)
+            name = TOFgroup(j).name;
+            patnamelist(j) = erase(name,"_RSCT.csv");
+        elseif j > length(TOFgroup) && j <= sum([length(TOFgroup) length(CTEPHgroup)])
+            namecount = j-length(TOFgroup);
+            name = CTEPHgroup(namecount).name;
+            patnamelist(j) = erase(name,"_RSCT.csv");
+        else
+            namecount = j- sum([length(TOFgroup) length(CTEPHgroup)]);
+            name = HFgroup(namecount).name;
+            patnamelist(j) = erase(name,"_RSCT.csv");
+
+        end
+      
+    end
+    patnamelist(9:end) = [patnamelist(13:end); patnamelist(9:12)];
+
 end
 end

@@ -41,13 +41,13 @@ if length(poi_framepts) == length(RVframepts)
         [~,~,shared_ind] = intersect(includedpts_lid,poi_framepts);
         ESRS = [RS_CT_array(:,(ES_frame - 1)) RS_CT_array(:,ES_frame) RS_CT_array(:,(ES_frame + 1))];
         ESRS(shared_ind,:) = [];
-        MW_CT(shared_ind) = [];
+        MW_CT(shared_ind,:) = [];
 
     end
 %if we're analyzing RV segments 
 else
     RS_CT_array = RS_CT_array(poi_framepts,:);
-    MW_CT = MW_CT(poi_framepts);
+    MW_CT = MW_CT(poi_framepts,:);
     shared_points = intersect(includedpts_lid,poi_framepts);
     if isempty(shared_points) == 1 %if there are no shared points, we can ignore the lids
         ESRS = [RS_CT_array(:,(ES_frame - 1)) RS_CT_array(:,ES_frame) RS_CT_array(:,(ES_frame + 1))];
@@ -55,10 +55,10 @@ else
         [~,~,shared_ind] = intersect(includedpts_lid,poi_framepts);
         ESRS = [RS_CT_array(:,(ES_frame - 1)) RS_CT_array(:,ES_frame) RS_CT_array(:,(ES_frame + 1))];
         ESRS(shared_ind,:) = [];
-        MW_CT(shared_ind) = [];
+        MW_CT(shared_ind,:) = [];
     end
 end
-meanMW = mean(MW_CT,1);
+meanMW = mean(MW_CT);
 kinetic_ind_es = find(ESRS(:,1) < -0.1 | ESRS(:,2) < -0.1 | ESRS(:,3) < -0.1);
 dyskinetic_ind_es = find(ESRS(:,1) >= -0.1 & ESRS(:,2) >= -0.1 & ESRS(:,3) >= -0.1);
 
@@ -88,7 +88,7 @@ if fig_flag == 1
         plot(min(ESRS(dyskinetic_ind_es(dyskineticNW_ind),:),[],2),MW_CT(dyskinetic_ind_es(dyskineticNW_ind)),'.','Color',[1 0 1]); hold on;
         xline(-0.1,'Color',[0 0 0]); hold on; yline(0,'Color',[0 0 0]);
         xlim([-0.62 0.32]); ylim([-17 55]); axis('square');
-        xlabel('End-systolic RS_C_T'); ylabel('Pressure-Strain Area')
+        xlabel('End-systolic RS_C_T'); ylabel('Pressure-Strain Area (mmHg)')
         
         text(-0.6,3,[num2str(kinetic_pw,'%.0f'),'%']);
         text(-0.6,-3,[num2str(kinetic_nw,'%.0f'),'%']); 

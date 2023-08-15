@@ -4,13 +4,17 @@
 clear; clc
 
 %Start in any subfolder of this repo
+addpath(genpath('../scripts'))
 addpath(genpath('../results'))
-cd('../results/');
+%cd('../results/');
 resultspath = cd('../results/');
+
 
 %% Demographic stats
 %load patient history table
 hx = readtable([resultspath,'/Table1_results/patient_history.csv']);
+
+%cd('../scripts/');
 
 %sex
 sex = table2array(hx(:,2));
@@ -23,6 +27,7 @@ for i = 1:length(sex)
         sexnum(i) = 2;
     end
 end
+
 results_sex = data_analysis(sexnum(1:8),sexnum(9:16),sexnum(17:end));
 
 %age
@@ -66,6 +71,61 @@ results_pm = data_analysis(pace(1:8),pace(9:16),pace(17:end));
 %nyha fc
 fc = table2array(hx(:,13)); 
 results_fc = data_analysis(fc(1:8),fc(9:16),fc(17:end));
+
+%AFib status
+af = table2array(hx(:,16));
+af = string(af);
+afib = zeros(length(af),1);
+for i = 1:length(af)
+    if af(i) == "No"
+        afib(i) = 1;
+    else
+        afib(i) = 2;
+    end
+end
+results_af = data_analysis(afib(1:8),afib(9:16),afib(17:end));
+
+%PR severity
+pr = table2array(hx(:,17));
+pr = string(pr);
+pulmregurg = zeros(length(pr),1);
+for i = 1:length(pr)
+    if pr(i) == "Trace"
+        pulmregurg(i) = 1;
+    elseif pr(i) == "Mild"
+        pulmregurg(i) = 2;
+    elseif pr(i) == "Moderate"
+        pulmregurg(i) = 3;
+    elseif pr(i) == "Severe"
+        pulmregurg(i) = 4;
+    elseif pr(i) == "Mild/Moderate"
+        pulmregurg(i) = 2;
+    elseif pr(i) == "None"
+        pulmregurg(i) = 0;
+    end
+end
+results_pr = data_analysis(pulmregurg(1:8),pulmregurg(9:16),pulmregurg(17:end));
+
+%TR severity
+tr = table2array(hx(:,18));
+tr = string(tr);
+triregurg = zeros(length(tr),1);
+for i = 1:length(tr)
+    if tr(i) == "Trace"
+        triregurg(i) = 1;
+    elseif tr(i) == "Mild"
+        triregurg(i) = 2;
+    elseif tr(i) == "Moderate"
+        triregurg(i) = 3;
+    elseif tr(i) == "Severe"
+        triregurg(i) = 4;
+    elseif tr(i) == "Mild/Moderate"
+        triregurg(i) = 2;
+    elseif tr(i) == "None"
+        triregurg(i) = 0;
+    end
+end
+results_tr = data_analysis(triregurg(1:8),triregurg(9:16),triregurg(17:end));
 
 %% CT measurements
 ct_data = readmatrix([resultspath,'/Table1_results/ct_measurements.csv']);

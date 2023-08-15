@@ -18,14 +18,14 @@ function [MW_CT] = calculateMWCT(RS_CT_array,RVpressure,CT_timing_array)
 
 %remove unacquired frames
 CTtiming = CT_timing_array(~isnan(CT_timing_array)); 
-[unique_time, unique_time_index, ~] = unique(RVpressure(1,:));
-    unique_pressure = RVpressure(2, unique_time_index);
+[unique_time, unique_time_index, ~] = unique(RVpressure(:,1));
+    unique_pressure = RVpressure(unique_time_index,2);
     %Fit the waveform to the CT timing data
     RR_interval = zeros(1,length(CTtiming));
     for i = 1:length(CTtiming)
         [~,RR_interval(i)] = min(abs(unique_time - CTtiming(i)));
     end
-    RR_pressure_simp = unique_pressure(RR_interval); 
+    RR_pressure_simp = unique_pressure(RR_interval)'; 
     MW_CT = zeros(length(RS_CT_array),1);
     for i = 1:length(RS_CT_array)
         MW_CT(i) = -trapz(RS_CT_array(i,:),RR_pressure_simp,2);
