@@ -28,9 +28,9 @@ Here is a list of data provided to calculate myocardial work and analyze RV perf
 8. RVOT_framepts: RV_framepts labeled RV outflow tract, reported as an index of RV_framepts positioned in the RVOT space 
 9. SW_framepts: RV_framepts labeled septal wall, reported as an index of RV_framepts positioned in the septal wall space
 10. lid_framepts: RV_framepts labeled "lids", which includes the tricuspid and pulmonary valve planes. Reported as an index of RV_framepts positioned in the lids space
-11. Echo_strain_data: RV strain acquired with speckle-tracking echocardiography and analyzed in Epsilon EchoInsight, reported as segmental deformations with respect to the R-R interval
-12. Intraobserver Study: containins all the RV RS<sub>CT</sub>, MW<sub>CT</sub>, and RV point information acquired by the intraobserver.
-13. Interobserver Study: containins all the RV RS<sub>CT</sub>, MW<sub>CT</sub>, and RV point information acquired by the interobserver.
+11. Echo_strain_data: RV strain acquired with speckle-tracking echocardiography and analyzed in Epsilon EchoInsight, reported as segmental RV deformations with respect to the R-R interval
+12. Intraobserver Study: contains all the RV RS<sub>CT</sub>, MW<sub>CT</sub>, and RV point information acquired by the intraobserver.
+13. Interobserver Study: contains all the RV RS<sub>CT</sub>, MW<sub>CT</sub>, and RV point information acquired by the interobserver.
 
 Patient data is anonymized. Data belonging to each patient is labeled by their disease type and a number, ex. rTOF1
 
