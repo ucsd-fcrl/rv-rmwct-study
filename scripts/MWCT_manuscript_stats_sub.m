@@ -141,6 +141,10 @@ results_svi = data_analysis(svi(1:8),svi(9:16),svi(17:end));
 ef = ct_data(:,4);
 results_ef = data_analysis(ef(1:8),ef(9:16),ef(17:end));
 
+%CT HR
+hr_ct = ct_data(:,5);
+results_hr_ct = data_analysis(hr_ct(1:8),hr_ct(9:16),hr_ct(17:end));
+
 %% RHC measurements
 rhc = readmatrix([resultspath,'/Table1_results/rhc_measurements.csv']);
 %heart rate
